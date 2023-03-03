@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>Mobile No:</label>
+        {% comment %} <input type="text" name="phone_number" >
+        <br><br> {% endcomment %}
+        {{Students.email}}
+        
+        <label>Password :</label>
+        {{Students.password}}
+        {% if Students.errors %}
+        <div class="alert alert-danger">
+            {% for field, errors in Students.errors.items %}
+                {% for error in errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endif %}
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account yet? <a href="{% url 'register' %}">Register here</a>.</p>
+</body>
+</html>
